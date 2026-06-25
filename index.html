@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ahoum Conversation Evaluation System | Analytics Dashboard</title>
+  <title>Ahoum Conversation Evaluation System</title>
   
   <!-- Premium Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css">
@@ -17,181 +17,265 @@
 
   <div class="container">
     
-    <!-- Application Header -->
+    <!-- Header Block -->
     <header class="app-header">
       <div class="brand-section">
-        <div class="brand-icon">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-            <path d="M8 7h8"></path>
-            <path d="M8 11h8"></path>
+        <div class="brand-logo-container">
+          <!-- Compass Logo Icon -->
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
           </svg>
         </div>
-        <div>
-          <h1 class="brand-title">Ahoum Eval <span class="brand-badge">Audit v1.0</span></h1>
+        <div class="brand-info">
+          <h1 class="brand-title">Ahoum Conversation Evaluation System</h1>
+          <span class="brand-subtitle">
+            Retrieval-Augmented Benchmarking Interface 
+            <span style="color: var(--text-light); font-size: 0.75rem;">•</span> 
+            300 Cognitive Facets Index
+          </span>
         </div>
       </div>
       
-      <!-- Navigation Tabs -->
-      <nav class="nav-tabs" aria-label="Main Navigation">
-        <button class="tab-btn active" data-target="overview-view">Overview</button>
-        <button class="tab-btn" data-target="explorer-view">Facets Explorer</button>
-        <button class="tab-btn" data-target="benchmarks-view">Benchmarks</button>
-        <button class="tab-btn" data-target="sandbox-view">Sandbox</button>
+      <!-- Navigation tabs (aligned right) -->
+      <nav class="nav-tabs-container" aria-label="Tab Navigation">
+        <button class="tab-btn active" data-target="sandbox-view">
+          <!-- Chip/Processor Icon -->
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+            <rect x="9" y="9" width="6" height="6"></rect>
+            <line x1="9" y1="1" x2="9" y2="4"></line>
+            <line x1="15" y1="1" x2="15" y2="4"></line>
+            <line x1="9" y1="20" x2="9" y2="23"></line>
+            <line x1="15" y1="20" x2="15" y2="23"></line>
+            <line x1="20" y1="9" x2="23" y2="9"></line>
+            <line x1="20" y1="15" x2="23" y2="15"></line>
+            <line x1="1" y1="9" x2="4" y2="9"></line>
+            <line x1="1" y1="15" x2="4" y2="15"></line>
+          </svg>
+          Evaluation Sandbox
+        </button>
+        <button class="tab-btn" data-target="presets-view">
+          <!-- Chat/Presets Icon -->
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+          50 Presets Index
+        </button>
+        <button class="tab-btn" data-target="taxonomy-view">
+          <!-- Taxonomy/Book Icon -->
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+          300 Facets Taxonomy
+        </button>
       </nav>
     </header>
 
-    <!-- TAB 1: OVERVIEW -->
-    <section id="overview-view" class="view-section active">
-      <!-- KPI Metrics Row -->
-      <div class="overview-kpis">
-        <div class="kpi-card">
-          <div>
-            <div class="kpi-label">Registered Facets</div>
-            <div class="kpi-value" id="kpiFacetsCount">0</div>
+    <!-- ==========================================
+         TAB 1: EVALUATION SANDBOX (DEFAULT)
+         ========================================== -->
+    <section id="sandbox-view" class="view-section active">
+      
+      <!-- Dialogue Playground Card -->
+      <div class="card-panel">
+        <div class="playground-title-row">
+          <h2 class="playground-title">
+            <!-- Controls Icon -->
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" y1="21" x2="4" y2="14"></line>
+              <line x1="4" y1="10" x2="4" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12" y2="3"></line>
+              <line x1="20" y1="21" x2="20" y2="16"></line>
+              <line x1="20" y1="12" x2="20" y2="3"></line>
+              <line x1="1" y1="14" x2="7" y2="14"></line>
+              <line x1="9" y1="8" x2="15" y2="8"></line>
+              <line x1="17" y1="16" x2="23" y2="16"></line>
+            </svg>
+            Dialogue Playground
+          </h2>
+          
+          <div class="playground-topk-container">
+            <span>Top-K Facets:</span>
+            <input type="number" class="playground-topk-input" id="topKInput" value="6" min="1" max="15">
           </div>
-          <div class="kpi-subtitle">Distinct evaluation criteria</div>
-          <div class="kpi-icon">📝</div>
-        </div>
-        
-        <div class="kpi-card purple">
-          <div>
-            <div class="kpi-label">Benchmark Dialogues</div>
-            <div class="kpi-value" id="kpiConversationsCount">0</div>
-          </div>
-          <div class="kpi-subtitle">Multi-turn evaluation cases</div>
-          <div class="kpi-icon">💬</div>
-        </div>
-        
-        <div class="kpi-card">
-          <div>
-            <div class="kpi-label">System Categories</div>
-            <div class="kpi-value" id="kpiCategoriesCount">0</div>
-          </div>
-          <div class="kpi-subtitle">Qualitative dimensions</div>
-          <div class="kpi-icon">🏷️</div>
         </div>
 
-        <div class="kpi-card purple">
-          <div>
-            <div class="kpi-label">Mean Confidence</div>
-            <div class="kpi-value" id="kpiAvgConfidence">0.0%</div>
-          </div>
-          <div class="kpi-subtitle">Audit retrieval threshold</div>
-          <div class="kpi-icon">🛡️</div>
+        <!-- Editable Turns Deck -->
+        <div class="turns-deck" id="turnsDeck">
+          <!-- Dynamically populated turn-cards -->
+        </div>
+
+        <!-- Playground Actions -->
+        <div class="playground-footer-actions">
+          <button class="btn-dashed-add" id="addTurnBtn">
+            <!-- Plus Icon -->
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            Insert Dialogue Turn
+          </button>
+          
+          <button class="btn-primary-run" id="runRaeEvaluatorBtn">
+            <!-- Play Icon -->
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            Run RAE Evaluator
+          </button>
         </div>
       </div>
 
-      <!-- Overview Charts Grid -->
-      <div class="overview-grid">
-        <!-- Categories Breakdown -->
-        <div class="dashboard-card">
-          <div class="card-title-bar">
-            <h2 class="card-title">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-cyan);">
-                <rect x="3" y="3" width="7" height="9"></rect>
-                <rect x="14" y="3" width="7" height="5"></rect>
-                <rect x="14" y="12" width="7" height="9"></rect>
-                <rect x="3" y="16" width="7" height="5"></rect>
-              </svg>
-              Facet Category Distribution
-            </h2>
-            <span style="font-size: 0.8rem; color: var(--text-dark);">Sorted by size</span>
+      <!-- Offline Sandbox Manifest Banner -->
+      <div class="manifest-banner">
+        <div class="manifest-title-bar">
+          <span class="accent">>_</span> OFFLINE SANDBOX MANIFEST
+        </div>
+        <p class="manifest-desc">
+          All components for the Ahoum Python Assignment are located in /conversation-evaluator/ directory. Export this workspace as a ZIP or commit directly to GitHub to fetch the complete solution.
+        </p>
+        <div class="manifest-codebox">
+          <span class="comment"># Fire docker multi-service containers</span>
+          <span class="command">$ docker-compose -f docker/docker-compose.yml up --build</span>
+        </div>
+      </div>
+
+      <!-- Results Content Area (Controlled by evaluator trigger) -->
+      <div id="evaluationOutputArea" style="display: none;">
+        
+        <!-- KPI Stat Cards Row -->
+        <div class="kpi-row">
+          <div class="kpi-stat-card">
+            <span class="kpi-stat-label">AVG SCORE</span>
+            <div class="kpi-stat-val" id="kpiAvgScore">5.00 <span class="small">/ 5.0</span></div>
           </div>
-          <div class="category-progress-grid" id="categoryDistributionContainer">
-            <!-- Dynamic Category Rows -->
+          
+          <div class="kpi-stat-card">
+            <span class="kpi-stat-label">RAG FACETS MATCHED</span>
+            <div class="kpi-stat-val" id="kpiFacetsMatched">6 traits</div>
+          </div>
+          
+          <div class="kpi-stat-card">
+            <span class="kpi-stat-label">ENSEMBLE CONFIDENCE</span>
+            <div class="kpi-stat-val" id="kpiEnsembleConfidence">97% <span class="small">avg</span></div>
+          </div>
+          
+          <div class="kpi-stat-card">
+            <span class="kpi-stat-label">CRITICAL WARNINGS</span>
+            <div class="kpi-stat-val success-status">
+              <!-- Checkmark Icon -->
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              SECURE & ALIGNED
+            </div>
           </div>
         </div>
 
-        <!-- Tiers & Priorities Breakdowns -->
-        <div class="dashboard-card">
-          <div class="card-title-bar">
-            <h2 class="card-title">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-violet);">
-                <line x1="18" y1="20" x2="18" y2="10"></line>
-                <line x1="12" y1="20" x2="12" y2="4"></line>
-                <line x1="6" y1="20" x2="6" y2="14"></line>
+        <!-- Cross-Category Evaluation Matrix -->
+        <div class="card-panel">
+          <h2 class="section-header-title">
+            <!-- Bars Chart Icon -->
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"></line>
+              <line x1="12" y1="20" x2="12" y2="4"></line>
+              <line x1="6" y1="20" x2="6" y2="14"></line>
+            </svg>
+            Cross-Category Evaluation Matrix
+          </h2>
+          
+          <div class="matrix-layout">
+            <!-- Category ratings bars -->
+            <div class="matrix-bars" id="matrixBarsContainer">
+              <!-- Dynamically populated progress bars -->
+            </div>
+            
+            <!-- Circular Radial Gauge -->
+            <div class="matrix-gauge-wrapper">
+              <svg class="gauge-svg" width="180" height="180">
+                <circle class="gauge-bg-ring" cx="90" cy="90" r="70"></circle>
+                <circle class="gauge-fill-ring" id="gaugeFillRing" cx="90" cy="90" r="70"></circle>
               </svg>
-              Segmentation
-            </h2>
-          </div>
-          <div class="breakdown-section">
-            <!-- Tiers Segment -->
-            <div class="breakdown-group">
-              <h3 class="breakdown-subtitle">Evaluation Tiers</h3>
-              <div class="mini-stats-grid">
-                <div class="stat-box tier-1">
-                  <div class="stat-num" id="tier1Count">0</div>
-                  <div class="stat-lbl">Tier 1 (Core)</div>
-                </div>
-                <div class="stat-box tier-2">
-                  <div class="stat-num" id="tier2Count">0</div>
-                  <div class="stat-lbl">Tier 2 (Std)</div>
-                </div>
-                <div class="stat-box tier-3">
-                  <div class="stat-num" id="tier3Count">0</div>
-                  <div class="stat-lbl">Tier 3 (Ext)</div>
-                </div>
-              </div>
-            </div>
-            <!-- Priorities Segment -->
-            <div class="breakdown-group">
-              <h3 class="breakdown-subtitle">Impact Priorities</h3>
-              <div class="mini-stats-grid">
-                <div class="stat-box priority-high">
-                  <div class="stat-num" id="priorityHighCount">0</div>
-                  <div class="stat-lbl">High</div>
-                </div>
-                <div class="stat-box priority-medium">
-                  <div class="stat-num" id="priorityMediumCount">0</div>
-                  <div class="stat-lbl">Medium</div>
-                </div>
-                <div class="stat-box priority-low">
-                  <div class="stat-num" id="priorityLowCount">0</div>
-                  <div class="stat-lbl">Low</div>
-                </div>
-              </div>
+              <span class="gauge-percentage-text" id="gaugePercentage">97%</span>
             </div>
           </div>
+        </div>
+
+        <!-- Granular Evaluation Breakdown -->
+        <div style="margin-top: 1.5rem;">
+          <h2 class="section-header-title" style="border: none; margin-bottom: 0.5rem;">
+            GRANULAR EVALUATION BREAKDOWN
+          </h2>
+          <div class="breakdown-deck" id="granularBreakdownDeck">
+            <!-- Dynamically populated facet audit cards -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading / Evaluating Dialogue State -->
+      <div id="evaluationLoadingArea" class="simulation-loader" style="display: none;">
+        <div class="spinner"></div>
+        <div style="font-weight: 700; color: var(--text-primary);">Processing Dialogue Analysis...</div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Fetching cognitive facets & scoring model</p>
+      </div>
+
+    </section>
+
+    <!-- ==========================================
+         TAB 2: 50 PRESETS INDEX
+         ========================================== -->
+    <section id="presets-view" class="view-section">
+      <div class="card-panel">
+        <h2 class="section-header-title">
+          <!-- Presets grid Icon -->
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          Dialogue Presets Benchmark Index
+        </h2>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+          Browse 50 curated multi-turn dialogue benchmarks across customer support, coding, safety and emotional domains. Select any preset to load its conversation turns directly into the Evaluation Sandbox.
+        </p>
+        
+        <div class="presets-grid" id="presetsGrid">
+          <!-- Dynamically populated preset cards -->
         </div>
       </div>
     </section>
 
-    <!-- TAB 2: FACETS EXPLORER -->
-    <section id="explorer-view" class="view-section">
-      <!-- Search and Filter Panel -->
-      <div class="explorer-controls">
-        <div class="search-wrapper">
-          <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-          <input type="text" class="search-input" id="facetSearchInput" placeholder="Search facets by ID, name, keywords, description...">
-        </div>
-        <div class="filter-wrapper">
-          <select class="filter-select" id="filterCategory">
+    <!-- ==========================================
+         TAB 3: 300 FACETS TAXONOMY
+         ========================================== -->
+    <section id="taxonomy-view" class="view-section">
+      <!-- Search & Filters -->
+      <div class="card-panel" style="padding: 1.25rem; margin-bottom: 1.25rem;">
+        <div class="taxonomy-search-bar">
+          <input type="text" class="taxonomy-search-input" id="taxSearchInput" placeholder="Search cognitive facets by name, description, tags...">
+          
+          <select class="taxonomy-select" id="taxCategorySelect">
             <option value="">All Categories</option>
           </select>
-          <select class="filter-select" id="filterTier">
+          <select class="taxonomy-select" id="taxTierSelect">
             <option value="">All Tiers</option>
             <option value="Tier 1">Tier 1</option>
             <option value="Tier 2">Tier 2</option>
             <option value="Tier 3">Tier 3</option>
           </select>
-          <select class="filter-select" id="filterPriority">
-            <option value="">All Priorities</option>
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
-          </select>
         </div>
       </div>
 
       <!-- Split Layout: Table vs Details -->
-      <div class="explorer-grid-layout">
+      <div class="taxonomy-layout">
         <!-- Table Column -->
-        <div class="table-container">
-          <table class="explorer-table">
+        <div class="taxonomy-table-container">
+          <table class="taxonomy-table">
             <thead>
               <tr>
                 <th>ID</th>
@@ -201,164 +285,54 @@
                 <th>Priority</th>
               </tr>
             </thead>
-            <tbody id="facetsTableBody">
-              <!-- Dynamic Rows -->
+            <tbody id="taxTableBody">
+              <!-- Dynamically populated table rows -->
             </tbody>
           </table>
         </div>
 
-        <!-- Details Column -->
-        <div class="dashboard-card details-panel">
-          <div id="facetDetailsPlaceholder" class="details-placeholder">
-            <div class="details-placeholder-icon">📋</div>
-            <p>Select a facet from the explorer registry to inspect full audit criteria</p>
+        <!-- Details Panel -->
+        <div class="card-panel taxonomy-detail-card">
+          <div id="taxDetailPlaceholder" class="taxonomy-detail-placeholder">
+            <div class="icon">📖</div>
+            <p>Select an evaluation facet from the taxonomy table to inspect details</p>
           </div>
           
-          <div id="facetDetailsContent" class="details-content" style="display: none;">
-            <div class="details-header">
-              <div class="details-meta-badges">
-                <span class="badge" id="detailsCategoryBadge">Category</span>
-                <span class="badge" id="detailsTierBadge">Tier</span>
-                <span class="badge" id="detailsPriorityBadge">Priority</span>
-              </div>
-              <div class="details-id" id="detailsFacetId">F-0001</div>
-              <h2 class="details-title" id="detailsFacetName">Conversational Coherence</h2>
-            </div>
-
-            <div>
-              <h3 class="details-section-lbl">Description</h3>
-              <div class="details-section-val" id="detailsDescription">...</div>
-            </div>
-
-            <div>
-              <h3 class="details-section-lbl">Evaluation Prompt</h3>
-              <pre class="details-code-block" id="detailsEvaluationPrompt">...</pre>
-            </div>
-
-            <div class="details-metrics-row">
-              <div class="details-metric-box">
-                <h3 class="details-section-lbl">Confidence Threshold</h3>
-                <div class="details-metric-num" id="detailsConfidence">0.00</div>
-              </div>
-              <div class="details-metric-box">
-                <h3 class="details-section-lbl">Severity Weight</h3>
-                <div class="details-metric-num" id="detailsSeverity">0.00</div>
+          <div id="taxDetailContent" style="display: none;">
+            <div class="taxonomy-detail-header">
+              <div class="taxonomy-detail-id" id="taxDetailId">F-0001</div>
+              <h2 class="taxonomy-detail-name" id="taxDetailName">Conversational Coherence</h2>
+              <div class="taxonomy-detail-meta-row">
+                <span class="taxonomy-detail-badge cat" id="taxDetailCat">Pragmatics</span>
+                <span class="taxonomy-detail-badge tier" id="taxDetailTier">Tier 1</span>
+                <span class="taxonomy-detail-badge prio" id="taxDetailPriority">High</span>
               </div>
             </div>
 
-            <div>
-              <h3 class="details-section-lbl">Score Definition</h3>
-              <div class="details-section-val" id="detailsScoreDefinition" style="font-weight: 500;">...</div>
+            <div class="taxonomy-detail-section">
+              <h3 class="taxonomy-detail-section-title">Description</h3>
+              <div class="taxonomy-detail-section-val" id="taxDetailDesc">...</div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- TAB 3: BENCHMARKS -->
-    <section id="benchmarks-view" class="view-section">
-      <div class="benchmarks-layout">
-        <!-- Sidebar - Conversation list -->
-        <div class="benchmarks-sidebar">
-          <div class="sidebar-title-bar">
-            <h2 class="sidebar-title">Dialogue Cases</h2>
-          </div>
-          <div class="conversation-list-container" id="convoListContainer">
-            <!-- Dynamic Conversation Items -->
-          </div>
-        </div>
-
-        <!-- Chat Viewport -->
-        <div class="chat-viewport">
-          <div class="chat-header">
-            <div class="chat-header-title" id="activeConvoTitle">Select a dialogue case</div>
-            <div style="font-size: 0.8rem; color: var(--accent-cyan); font-weight: 600;" id="activeConvoDomain">...</div>
-          </div>
-          <div class="chat-message-list" id="chatMessageList">
-            <div style="text-align: center; color: var(--text-dark); margin-top: 4rem;">
-              Click on a dialogue case in the sidebar to review the interaction log
+            <div class="taxonomy-detail-section">
+              <h3 class="taxonomy-detail-section-title">Evaluation Prompt</h3>
+              <pre class="taxonomy-detail-code" id="taxDetailPrompt">...</pre>
             </div>
-          </div>
-        </div>
 
-        <!-- Score Sidebar -->
-        <div class="scores-sidebar">
-          <div class="scores-title-bar">
-            <h2 class="sidebar-title">Audit Reports</h2>
-          </div>
-          <div class="scores-list-container" id="convoScoresContainer">
-            <div style="text-align: center; color: var(--text-dark); font-size: 0.85rem; padding: 1rem;">
-              Select a conversation to view detailed LLM audit results.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TAB 4: SANDBOX -->
-    <section id="sandbox-view" class="view-section">
-      <div class="sandbox-layout">
-        <!-- Left Pane - Inputs -->
-        <div class="sandbox-input-panel">
-          <div class="dashboard-card">
-            <div class="card-title-bar">
-              <h2 class="card-title">Dialogue Sandbox</h2>
-            </div>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
-              Paste your turn-by-turn dialogue text below to audit it against target facets:
-            </p>
-            <textarea class="sandbox-textarea" id="sandboxDialogueInput" placeholder='[&#10;  {"role": "user", "content": "Can you check my return?"},&#10;  {"role": "assistant", "content": "I would love to help! Can you please provide your order ID?"}&#10;]'></textarea>
-          </div>
-
-          <div class="sandbox-select-facets">
-            <h3 class="card-title" style="font-size: 1rem; margin-bottom: 0.5rem;">Select Facets to Evaluate</h3>
-            <div class="sandbox-facet-list" id="sandboxFacetList">
-              <!-- Dynamically populated checkboxes -->
-            </div>
-          </div>
-
-          <button class="sandbox-btn" id="runSimulationBtn">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg>
-            Trigger Pipeline Audit
-          </button>
-        </div>
-
-        <!-- Right Pane - Results -->
-        <div class="dashboard-card sandbox-results-panel">
-          <div class="card-title-bar">
-            <h2 class="card-title">Audit Output</h2>
-          </div>
-          
-          <!-- Idle / Initial state -->
-          <div id="sandboxIdleState" class="details-placeholder">
-            <div class="details-placeholder-icon">🛡️</div>
-            <p>Select facets, load custom dialogue, and click <strong>Trigger Pipeline Audit</strong> to inspect results</p>
-          </div>
-
-          <!-- Loading state -->
-          <div id="sandboxLoadingState" class="simulation-loader" style="display: none;">
-            <div class="spinner"></div>
-            <div style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--accent-cyan);">Evaluating Dialogue...</div>
-            <p style="font-size: 0.8rem; color: var(--text-dark);">Synthesizing LLM ratings against facet registry</p>
-          </div>
-
-          <!-- Finished results state -->
-          <div id="sandboxResultsContainer" class="simulation-output-container" style="display: none;">
-            <div class="sim-score-hero">
-              <div class="sim-score-title">Dialogue Success Index</div>
-              <div class="sim-score-num" id="simSuccessScore">0%</div>
-              <div class="sim-score-bar-track">
-                <div class="sim-score-bar-fill" id="simSuccessBar"></div>
+            <div class="taxonomy-detail-grid">
+              <div class="taxonomy-detail-metric-box">
+                <h3 class="taxonomy-detail-section-title">Confidence Thresh</h3>
+                <div class="taxonomy-detail-metric-num" id="taxDetailConfidence">0.00</div>
+              </div>
+              <div class="taxonomy-detail-metric-box">
+                <h3 class="taxonomy-detail-section-title">Severity Weight</h3>
+                <div class="taxonomy-detail-metric-num" id="taxDetailSeverity">0.00</div>
               </div>
             </div>
             
-            <div style="border-top: 1px solid var(--border-light); padding-top: 1rem;">
-              <h3 class="details-section-lbl">Detailed Evaluations</h3>
-              <div class="scores-list-container" id="sandboxScoresList" style="max-height: 380px;">
-                <!-- Simulated scores cards here -->
-              </div>
+            <div class="taxonomy-detail-section" style="margin-top: 1.15rem;">
+              <h3 class="taxonomy-detail-section-title">Score Definition</h3>
+              <div class="taxonomy-detail-section-val" id="taxDetailScoreDef" style="font-weight: 600;">...</div>
             </div>
           </div>
         </div>
@@ -367,7 +341,7 @@
 
   </div>
 
-  <!-- Javascript Core -->
+  <!-- Core Javascript -->
   <script src="app.js"></script>
 </body>
 </html>
