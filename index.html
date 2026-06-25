@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ahoum Conversation Evaluation System | Analytics Dashboard</title>
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Application Header -->
+    <header class="app-header">
+      <div class="brand-section">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            <path d="M8 7h8"></path>
+            <path d="M8 11h8"></path>
+          </svg>
+        </div>
+        <div>
+          <h1 class="brand-title">Ahoum Eval <span class="brand-badge">Audit v1.0</span></h1>
+        </div>
+      </div>
+      
+      <!-- Navigation Tabs -->
+      <nav class="nav-tabs" aria-label="Main Navigation">
+        <button class="tab-btn active" data-target="overview-view">Overview</button>
+        <button class="tab-btn" data-target="explorer-view">Facets Explorer</button>
+        <button class="tab-btn" data-target="benchmarks-view">Benchmarks</button>
+        <button class="tab-btn" data-target="sandbox-view">Sandbox</button>
+      </nav>
+    </header>
+
+    <!-- TAB 1: OVERVIEW -->
+    <section id="overview-view" class="view-section active">
+      <!-- KPI Metrics Row -->
+      <div class="overview-kpis">
+        <div class="kpi-card">
+          <div>
+            <div class="kpi-label">Registered Facets</div>
+            <div class="kpi-value" id="kpiFacetsCount">0</div>
+          </div>
+          <div class="kpi-subtitle">Distinct evaluation criteria</div>
+          <div class="kpi-icon">📝</div>
+        </div>
+        
+        <div class="kpi-card purple">
+          <div>
+            <div class="kpi-label">Benchmark Dialogues</div>
+            <div class="kpi-value" id="kpiConversationsCount">0</div>
+          </div>
+          <div class="kpi-subtitle">Multi-turn evaluation cases</div>
+          <div class="kpi-icon">💬</div>
+        </div>
+        
+        <div class="kpi-card">
+          <div>
+            <div class="kpi-label">System Categories</div>
+            <div class="kpi-value" id="kpiCategoriesCount">0</div>
+          </div>
+          <div class="kpi-subtitle">Qualitative dimensions</div>
+          <div class="kpi-icon">🏷️</div>
+        </div>
+
+        <div class="kpi-card purple">
+          <div>
+            <div class="kpi-label">Mean Confidence</div>
+            <div class="kpi-value" id="kpiAvgConfidence">0.0%</div>
+          </div>
+          <div class="kpi-subtitle">Audit retrieval threshold</div>
+          <div class="kpi-icon">🛡️</div>
+        </div>
+      </div>
+
+      <!-- Overview Charts Grid -->
+      <div class="overview-grid">
+        <!-- Categories Breakdown -->
+        <div class="dashboard-card">
+          <div class="card-title-bar">
+            <h2 class="card-title">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-cyan);">
+                <rect x="3" y="3" width="7" height="9"></rect>
+                <rect x="14" y="3" width="7" height="5"></rect>
+                <rect x="14" y="12" width="7" height="9"></rect>
+                <rect x="3" y="16" width="7" height="5"></rect>
+              </svg>
+              Facet Category Distribution
+            </h2>
+            <span style="font-size: 0.8rem; color: var(--text-dark);">Sorted by size</span>
+          </div>
+          <div class="category-progress-grid" id="categoryDistributionContainer">
+            <!-- Dynamic Category Rows -->
+          </div>
+        </div>
+
+        <!-- Tiers & Priorities Breakdowns -->
+        <div class="dashboard-card">
+          <div class="card-title-bar">
+            <h2 class="card-title">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-violet);">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+              Segmentation
+            </h2>
+          </div>
+          <div class="breakdown-section">
+            <!-- Tiers Segment -->
+            <div class="breakdown-group">
+              <h3 class="breakdown-subtitle">Evaluation Tiers</h3>
+              <div class="mini-stats-grid">
+                <div class="stat-box tier-1">
+                  <div class="stat-num" id="tier1Count">0</div>
+                  <div class="stat-lbl">Tier 1 (Core)</div>
+                </div>
+                <div class="stat-box tier-2">
+                  <div class="stat-num" id="tier2Count">0</div>
+                  <div class="stat-lbl">Tier 2 (Std)</div>
+                </div>
+                <div class="stat-box tier-3">
+                  <div class="stat-num" id="tier3Count">0</div>
+                  <div class="stat-lbl">Tier 3 (Ext)</div>
+                </div>
+              </div>
+            </div>
+            <!-- Priorities Segment -->
+            <div class="breakdown-group">
+              <h3 class="breakdown-subtitle">Impact Priorities</h3>
+              <div class="mini-stats-grid">
+                <div class="stat-box priority-high">
+                  <div class="stat-num" id="priorityHighCount">0</div>
+                  <div class="stat-lbl">High</div>
+                </div>
+                <div class="stat-box priority-medium">
+                  <div class="stat-num" id="priorityMediumCount">0</div>
+                  <div class="stat-lbl">Medium</div>
+                </div>
+                <div class="stat-box priority-low">
+                  <div class="stat-num" id="priorityLowCount">0</div>
+                  <div class="stat-lbl">Low</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: FACETS EXPLORER -->
+    <section id="explorer-view" class="view-section">
+      <!-- Search and Filter Panel -->
+      <div class="explorer-controls">
+        <div class="search-wrapper">
+          <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" class="search-input" id="facetSearchInput" placeholder="Search facets by ID, name, keywords, description...">
+        </div>
+        <div class="filter-wrapper">
+          <select class="filter-select" id="filterCategory">
+            <option value="">All Categories</option>
+          </select>
+          <select class="filter-select" id="filterTier">
+            <option value="">All Tiers</option>
+            <option value="Tier 1">Tier 1</option>
+            <option value="Tier 2">Tier 2</option>
+            <option value="Tier 3">Tier 3</option>
+          </select>
+          <select class="filter-select" id="filterPriority">
+            <option value="">All Priorities</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Split Layout: Table vs Details -->
+      <div class="explorer-grid-layout">
+        <!-- Table Column -->
+        <div class="table-container">
+          <table class="explorer-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Facet Name</th>
+                <th>Category</th>
+                <th>Tier</th>
+                <th>Priority</th>
+              </tr>
+            </thead>
+            <tbody id="facetsTableBody">
+              <!-- Dynamic Rows -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Details Column -->
+        <div class="dashboard-card details-panel">
+          <div id="facetDetailsPlaceholder" class="details-placeholder">
+            <div class="details-placeholder-icon">📋</div>
+            <p>Select a facet from the explorer registry to inspect full audit criteria</p>
+          </div>
+          
+          <div id="facetDetailsContent" class="details-content" style="display: none;">
+            <div class="details-header">
+              <div class="details-meta-badges">
+                <span class="badge" id="detailsCategoryBadge">Category</span>
+                <span class="badge" id="detailsTierBadge">Tier</span>
+                <span class="badge" id="detailsPriorityBadge">Priority</span>
+              </div>
+              <div class="details-id" id="detailsFacetId">F-0001</div>
+              <h2 class="details-title" id="detailsFacetName">Conversational Coherence</h2>
+            </div>
+
+            <div>
+              <h3 class="details-section-lbl">Description</h3>
+              <div class="details-section-val" id="detailsDescription">...</div>
+            </div>
+
+            <div>
+              <h3 class="details-section-lbl">Evaluation Prompt</h3>
+              <pre class="details-code-block" id="detailsEvaluationPrompt">...</pre>
+            </div>
+
+            <div class="details-metrics-row">
+              <div class="details-metric-box">
+                <h3 class="details-section-lbl">Confidence Threshold</h3>
+                <div class="details-metric-num" id="detailsConfidence">0.00</div>
+              </div>
+              <div class="details-metric-box">
+                <h3 class="details-section-lbl">Severity Weight</h3>
+                <div class="details-metric-num" id="detailsSeverity">0.00</div>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="details-section-lbl">Score Definition</h3>
+              <div class="details-section-val" id="detailsScoreDefinition" style="font-weight: 500;">...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: BENCHMARKS -->
+    <section id="benchmarks-view" class="view-section">
+      <div class="benchmarks-layout">
+        <!-- Sidebar - Conversation list -->
+        <div class="benchmarks-sidebar">
+          <div class="sidebar-title-bar">
+            <h2 class="sidebar-title">Dialogue Cases</h2>
+          </div>
+          <div class="conversation-list-container" id="convoListContainer">
+            <!-- Dynamic Conversation Items -->
+          </div>
+        </div>
+
+        <!-- Chat Viewport -->
+        <div class="chat-viewport">
+          <div class="chat-header">
+            <div class="chat-header-title" id="activeConvoTitle">Select a dialogue case</div>
+            <div style="font-size: 0.8rem; color: var(--accent-cyan); font-weight: 600;" id="activeConvoDomain">...</div>
+          </div>
+          <div class="chat-message-list" id="chatMessageList">
+            <div style="text-align: center; color: var(--text-dark); margin-top: 4rem;">
+              Click on a dialogue case in the sidebar to review the interaction log
+            </div>
+          </div>
+        </div>
+
+        <!-- Score Sidebar -->
+        <div class="scores-sidebar">
+          <div class="scores-title-bar">
+            <h2 class="sidebar-title">Audit Reports</h2>
+          </div>
+          <div class="scores-list-container" id="convoScoresContainer">
+            <div style="text-align: center; color: var(--text-dark); font-size: 0.85rem; padding: 1rem;">
+              Select a conversation to view detailed LLM audit results.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: SANDBOX -->
+    <section id="sandbox-view" class="view-section">
+      <div class="sandbox-layout">
+        <!-- Left Pane - Inputs -->
+        <div class="sandbox-input-panel">
+          <div class="dashboard-card">
+            <div class="card-title-bar">
+              <h2 class="card-title">Dialogue Sandbox</h2>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Paste your turn-by-turn dialogue text below to audit it against target facets:
+            </p>
+            <textarea class="sandbox-textarea" id="sandboxDialogueInput" placeholder='[&#10;  {"role": "user", "content": "Can you check my return?"},&#10;  {"role": "assistant", "content": "I would love to help! Can you please provide your order ID?"}&#10;]'></textarea>
+          </div>
+
+          <div class="sandbox-select-facets">
+            <h3 class="card-title" style="font-size: 1rem; margin-bottom: 0.5rem;">Select Facets to Evaluate</h3>
+            <div class="sandbox-facet-list" id="sandboxFacetList">
+              <!-- Dynamically populated checkboxes -->
+            </div>
+          </div>
+
+          <button class="sandbox-btn" id="runSimulationBtn">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            Trigger Pipeline Audit
+          </button>
+        </div>
+
+        <!-- Right Pane - Results -->
+        <div class="dashboard-card sandbox-results-panel">
+          <div class="card-title-bar">
+            <h2 class="card-title">Audit Output</h2>
+          </div>
+          
+          <!-- Idle / Initial state -->
+          <div id="sandboxIdleState" class="details-placeholder">
+            <div class="details-placeholder-icon">🛡️</div>
+            <p>Select facets, load custom dialogue, and click <strong>Trigger Pipeline Audit</strong> to inspect results</p>
+          </div>
+
+          <!-- Loading state -->
+          <div id="sandboxLoadingState" class="simulation-loader" style="display: none;">
+            <div class="spinner"></div>
+            <div style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--accent-cyan);">Evaluating Dialogue...</div>
+            <p style="font-size: 0.8rem; color: var(--text-dark);">Synthesizing LLM ratings against facet registry</p>
+          </div>
+
+          <!-- Finished results state -->
+          <div id="sandboxResultsContainer" class="simulation-output-container" style="display: none;">
+            <div class="sim-score-hero">
+              <div class="sim-score-title">Dialogue Success Index</div>
+              <div class="sim-score-num" id="simSuccessScore">0%</div>
+              <div class="sim-score-bar-track">
+                <div class="sim-score-bar-fill" id="simSuccessBar"></div>
+              </div>
+            </div>
+            
+            <div style="border-top: 1px solid var(--border-light); padding-top: 1rem;">
+              <h3 class="details-section-lbl">Detailed Evaluations</h3>
+              <div class="scores-list-container" id="sandboxScoresList" style="max-height: 380px;">
+                <!-- Simulated scores cards here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Javascript Core -->
+  <script src="app.js"></script>
+</body>
+</html>
